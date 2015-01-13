@@ -1,0 +1,463 @@
+% !TEX root = ../main.tex
+
+\section{Случайные величины}
+
+\subsection{Одномерные случайные величины}
+
+\subsubsection{Определение случайной величины}
+
+\begin{definition}
+	\bi{Случайная величина} --- это скалярная функция $X(\outcome)$ заданная на \textit{пространстве элементарных исходов}, где для $\forall x \in \Re$ множество исходов $\{\outcome: X(\outcome) < x\}$ есть \textit{событие}.
+\end{definition}
+
+\begin{definition}
+	\bi{Функцией распределения} (\bi{вероятностей}) случайной величины $X$ есть функция $F(X)$, где $\forall x \in \Re$
+	\[
+		F(x) = \Prob\{\outcome: X(\outcome) < x\} \quad \text{или} \quad F(x) = \Prob\{X < x\}
+	\]
+	т.\,е. в $x$ функция принимает значение \textit{вероятности события} $\{X < x\}$, которое состоит из таких \textit{элементарных исходов} $\{\outcome: X(\outcome) < x\}$.
+\end{definition}
+
+\paragraph{Свойства функции распределения}
+
+\begin{enumerate}
+	\item $0 \leq F(x) \leq 1$
+	\begin{Proof}\\
+		Так как $F(x)$ --- вероятность.\\
+	\end{Proof}
+	
+	\item $F(x_1) \leq F(x_2)$, при $x_1 < x_2$ т.\,е. $F(x)$ --- неубывающая функция
+	\begin{Proof}\\
+		Так как $x_1 < x_2 \;\Rightarrow\; \{X < x_1\} \subseteq \{X < x_2\} \;\Rightarrow\; F(x_1) \leq F(x_2)$ из свойств вероятности.\\
+	\end{Proof}
+	
+	\item $\Prob\{x_1 \leq X < x_2\} = F(x_2) - F(x_1)$
+	\begin{Proof}
+		\begin{multline*}
+			\Prob\{X < x_2\} = \underbrace{\Prob\{X < x_1\} + \Prob\{x_1 \leq X < x_2\}}_{\{X < x_1\}\{x_1 \leq X < x_2\} = \emptyset} \;\Rightarrow\; \\
+			\Rightarrow\; F(x_2) = F(x_1) + \Prob\{x_1 \leq X < x_2\} \;\Rightarrow\;\\
+			\Rightarrow\; \Prob\{x_1 \leq X < x_2\} = F(x_2) - F(x_1)
+		\end{multline*}
+	\end{Proof}
+	
+	\item $\lim\limits_{x \to -\infty} \!\!F(x) = \!\!\lim\limits_{x \to -\infty} \!\!\Prob\{X < x\} = 0;\; \lim\limits_{x \to +\infty} \!\!F(x) = \!\!\lim\limits_{x \to +\infty} \!\!\Prob\{X < x\} = 1$
+	\begin{Proof}\\
+		Рассмотрим возрастающую последовательность $x_1 < x_2 < \dots < x_n < \dots$, которая стремится к $+\infty$. Таким образом при $x \to +\infty$ получаем:
+		\begin{itemize*}
+			\item $\{X < x_1\} \subseteq \{X < x_2\} \subseteq \dots \{X < x_n\} \subseteq \dots$;
+			\item $\{X < x_1\} \cup \{X < x_2\} \cup \dots \{X < x_n\} \cup \dots$ есть достоверное событие.
+		\end{itemize*} 
+		Применяя \textit{аксиому непрерывности} получаем
+		\[
+			\lim\limits_{x \to +\infty} \!\!F(x) = \!\!\lim\limits_{x \to +\infty} \!\!\Prob\{X < x\} = 1
+		\]
+	\end{Proof}
+	
+	\item $\lim\limits_{x \to x_0 - 0} \!\!F(x) = \!\!\lim\limits_{x \to x_0 - 0} \!\!\Prob\{X < x\} = \Prob\{X < x_0\} = F(x_0)$, т.\,е. функция распределения непрерывна слева
+	\begin{Proof}\\
+		Рассмотрим любую возрастающую последовательность чисел $x_1, \dots, x_n, \dots$, которая стремится к $x_0$ (слева). Так как:
+		\begin{itemize}
+			\item $\{X < x_1\} \subseteq \{X < x_2\} \subseteq \dots \{X < x_n\} \subseteq \dots$;
+			\item $\{X < x_1\} \cup \{X < x_2\} \cup \dots \{X < x_n\} \cup \dots = \{ X < x_0 \}$ 
+		\end{itemize}
+		 Используя \bi{аксиому непрерывности} приходим к выводу что
+		\[
+			\lim\limits_{x \to x_0 - 0} \!\!F(x) = F(x_0)
+		\]
+	\end{Proof}
+\end{enumerate}
+
+
+
+\subsection{Дискретные случайные величины}
+
+\begin{definition}
+	\textit{Случайную величину} $X$ называют \bi{дискретной} если множество её значений конечно или счётно.
+\end{definition}
+
+
+
+\subsection{Непрерывные случайные величины}
+\begin{definition}
+	\textit{Случайную величину} $X$ называют \bi{непрерывной}, если \textit{функцию распределения} можно представить в виде
+	\[
+		F(x) = \int_{-\infty}^{x} f(t)\,dt
+	\]
+	При этом, функцию $f(t)$ называют \bi{плотностью распределения} (\bi{вероятностей}) случайной величины $X$.
+\end{definition}
+
+\paragraph{Свойства плотности распределения вероятностей непрерывной случайно величины}
+
+\begin{enumerate}
+	\item $f(x) \geq 0$;
+	\begin{Proof}\\
+		Известно, что $f(x) = F'(x)$. Так как $F(x)$ не убывает $\;\Rightarrow\; F'(x) \geq 0 \;\Rightarrow\; f(x) \geq 0$\\
+	\end{Proof}
+	
+	\item $\Prob\{x_1 \leq X < x_2\} = \int_{x_1}^{x_2} f(t)\,dt$;
+	\begin{Proof}
+		Из \textit{свойств функции распределения} известно 
+		\[
+			\Prob\{x_1 \leq X < x_2\} = F(x_2) - F(x_1)
+		\]
+		Тогда используя определение \textit{непрерывной случайной величины} и свойства \textit{свойства аддитивности} сходящегося несобственного интеграла получаем
+		\[
+			F(x_2) - F(x_1) = \int_{-\infty}^{x_2} f(t)\,dt - \int_{-\infty}^{x_1} f(t)\,dt = \int_{x_1}^{x_2} f(t)\,dt
+		\]
+	\end{Proof}
+	
+	\item $\int_{-\infty}^{+\infty} f(t)\,dt = 1$
+	\begin{Proof}
+		\[
+			\int_{-\infty}^{+\infty} f(t)\,dt = \lim\limits_{t \to +\infty}F(t) - \lim\limits_{t \to -\infty}F(t) = 1 - 0 = 1
+		\]
+	\end{Proof}
+	
+	\item $\Prob\{x_1 \leq X < x_2 + \Delta x\} \approx f(x)\,\Delta x$ в точках непрерывности плотности распределения;
+	\begin{Proof}
+		\[
+			\Prob\{x_1 \leq X < x_2 + \Delta x\} = F(x_2 + \Delta x) - F(x_1)
+		\]
+		Так как функция плотности распределения непрерывна в окрестности точки $x$, то по теореме Лагранжа и учитывая, что $\Delta x$ ``мало`` 
+		\[
+			F(x_2 + \Delta x) - F(x_1) = F'(\xi)\,\Delta x \approx f(x)\,\Delta x, \quad \xi \in (x, x + \Delta x)
+		\]
+		Окончательный вид
+		\[
+			\Prob\{x_1 \leq X < x_2 + \Delta x\} \approx f(x)\,\Delta x
+		\]
+	\end{Proof}
+	
+	\item Для любого наперёд заданного $x_0 \in \Re,\; \Prob\{X = x_0\} = 0$.
+	\begin{Proof}
+		Из свойства 4 известно
+		\[
+			\Prob\{x_1 \leq X < x_2 + \Delta x\} \approx f(x)\,\Delta x
+		\]
+		При $\Delta x \to 0$ получаем
+		\[
+			\Prob\{X = x_0\} = 0
+		\]
+	\end{Proof}
+\end{enumerate}
+
+
+\subsection{Нормальное распределение (нормальная случайная величина)}
+
+График с холмами. Чем меньше вершина холма тем больше $\sigma$.
+
+\begin{definition}
+	Случайная величина распределена по \bi{нормальному закону}, если её плотность
+	\[
+		f_{m, \sigma}(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-m)^2}{2\sigma^2}}, \quad x \in \Re
+	\]
+	\begin{itemize}
+		\item $m$ характеризует положение точки максимума графика $f(x)$;
+		\item $\sigma$ характеризует разброс значений случайно величины относительно точки $m$
+		\item обозначение $X \sim N(m, \sigma^2)$ --- $X$ нормальная случайная величина с параметрами $m$ и $\sigma$
+		\item $X \sim N(0, 1)$ --- стандартный нормальный закон распределения. Его функцию распределения обозначают как $\Phi(x)$, а плотность распределения $\varphi(x)$. Таким образом, так как $m = 0$, а $\sigma = 1$
+		\[
+			\varphi(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}
+		\]
+	\end{itemize}
+\end{definition}
+
+\paragraph{Формула для вычисления вероятности попадания нормальной случайной величины в интервал}\hfill\\
+
+\noindent
+Если $X \sim N(m, \sigma);$ интервал $(a, b)$, тогда
+\[
+	\Prob\{a < X < b\} = \int_{a}^{b} f_{m, \sigma}(t)\,dt = \frac{1}{\sigma \sqrt{2\pi}} \int_{a}^{b} e^{-(t-m)^2/2\sigma^2}\,dt
+\]
+Воспользуемся заменой $z = (t - m)/\sigma,\; dt = \sigma\,dz$
+\[
+	\frac{1}{\sigma \sqrt{2\pi}} \int_{a}^{b} e^{-(t-m)^2/2\sigma^2}\,dt = \frac{1}{\sqrt{2\pi}} \int_{(a - m)/\sigma}^{(b - m)/\sigma} e^{-z^2/2}\,dz
+\]
+Таким образом окончательно получаем
+\[
+	\Prob\{a < X < b\} = \Phi\biggl(\frac{b - m}{\sigma}\biggr) - \Phi\biggl(\frac{a-m}{\sigma}\biggr)
+\]
+Если $X \sim N(0, 1);$ интервал $(a, b)$, то имеем частный случай
+\[
+	\Prob\{a < X < b\} = \Phi(b) - \Phi(a)
+\]
+
+
+
+\subsection{Случайные векторы}
+
+\begin{definition}
+	\bi{n--ым случайным вектором} называют совокупность случайных величин $X_1 = X_1(\outcome), \dots, X_n = X_n(\outcome)$ заданных на одном и том же \textit{вероятностном пространстве} $(\spaceoutcomes, \sigmaalgebra, \Prob)$ При этом случайные величины $X_1, \dots, X_n$ называют \bi{координатами случайного вектора}
+\end{definition}
+
+\begin{definition}
+	\bi{Функцией распределения веростностей случайного вектора} $\vec{X} = (X_1, \dots, X_n)$ называют отображение $F_{\vec{X}_n}\colon \Re^n \to \Re$ определённое правилом
+	\[
+		F_{\vec{X}_n}(x_1, \dots, x_n) = \Prob\{X_1 < x_1, \dots, X_n < x_n\}
+	\]
+\end{definition}
+\begin{rem}
+	В определении под $\{X_1 < x_1, \dots, X_n < x_n\}$ понимают произведение событий $\{X_1 < x_1\} \cap \dots \cap \{X_n < x_n\}$.
+\end{rem}
+\begin{rem}
+	При $n=2$ величина $F(x_1, x_2)$ равна вероятности попадания левее точки $x_1$ и ниже точки $x_2$.
+\end{rem}
+
+\paragraph{Свойства функции распределения двумерного случайного векторора}
+
+\begin{enumerate}
+	\item $0 \leq F(x_1, x_2) \leq 1$;
+	\begin{Proof}\\
+		Так как $F(x_1, x_2)$ есть вероятность события, то из свойств вероятности получаем данное неравенство.\\
+	\end{Proof}
+	
+	\item при фиксированном $x_1 \;\Rightarrow\; F(x_1, x_2)$ является неубывающий от $x_2$;\\
+	при фиксированном $x_2 \;\Rightarrow\; F(x_1, x_2)$ является неубывающий от $x_1$;
+	\begin{Proof}\\
+		Зафиксируем $x_1$, пусть $z_1 < z_2$, тогда
+		\[
+			\{X < x_1, X < z_1\} \subseteq \{X < x_1, X < z_2\} \;\Rightarrow\; \Prob\{X < x_1, X < z_1\} \leq \Prob\{X < x_1, X < z_2\}
+		\]
+		На основании всего этого делаем заключение
+		\[
+			F(x_1, z_1) \leq F(x_1, z_2)
+		\]
+		Аналогично и для случая когда фиксируется $x_2$\\
+	\end{Proof}
+	
+	\item $\lim\limits_{x_1 \to -\infty} \!\!\!F(x_1, x_2) = 0;\; \lim\limits_{x_2 \to -\infty} \!\!\!F(x_1, x_2) = 0;$
+	\begin{Proof}\\
+		Рассмотрим случай при $x_1 \to -\infty$
+		\[
+			\lim\limits_{x_1 \to -\infty} \!\!\!F(x_1, x_2) \;\Rightarrow\; \lim\limits_{x_1 \to -\infty} \!\!\Prob\bigl\{ \{X < x_1\}, \{ X < x_2\} \bigr\}
+		\]
+		Событие $\{ X < x_1 \}$ невозможное, так как $x_1 \to -\infty$, а поскольку\\ $\emptyset \cap \{ X < x_2\} = \emptyset$ делаем окончательное заключение, что
+		\[
+			\lim\limits_{x_1 \to -\infty} \!\!\!F(x_1, x_2) = 0
+		\]
+		Аналогично и для случая при $x_2 \to -\infty$.\\
+	\end{Proof}
+	
+	\item $\lim\limits_{x_1 \to +\infty, x_2 \to +\infty}F(x_1, x_2) = 1$
+	\begin{Proof}\\
+		Аналогично свойству $3$, только в данном случае получаем пересечение достоверных событий. Из чего делаем вывод
+		\[
+			\lim\limits_{x_1 \to +\infty, x_2 \to +\infty}F(x_1, x_2) = 1
+		\]
+	\end{Proof}
+	
+	\item $\Prob\{ a_1 \leq X < b_1, a_2 \leq X < b_2 \} = F(b_1, b_2) - F(b_1, a_2) - F(a_1, b_2) + F(a_1, a_2)$
+	\begin{Proof}\\
+		Данную вероятность можно получить следующим способом
+		\[
+			\Prob\{ a_1 \leq X < b_1, a_2 \leq X < b_2 \} = \Prob\{ X < b_1, a_2 \leq X < b_2 \} - \Prob\{ X < a_1, a_2 \leq X < b_2 \}
+		\]
+		Рассмотрим $\Prob\{ X < a_1, a_2 \leq X < b_2 \}$. Что бы вычислить, достаточно
+		\[
+			\Prob\{ X < a_1, a_2 \leq X < b_2 \} = \Prob\{ X < a_1, X < b_2 \} - \Prob\{ X < a_1, X < a_2 \}
+		\]
+		Таким образом вероятность полуобласти вычисляется как
+		\[
+			\Prob\{ X < a_1, a_2 \leq X < b_2 \} = F(a_1, b_2) - F(a_1, a_2)
+		\]
+		Рассмотрим $\Prob\{ X < b_1, a_2 \leq X < b_2 \}$, получаем
+		\[
+			\Prob\{ X < b_1, a_2 \leq X < b_2 \} = \Prob\{ X < b_1, X < b_2 \} - \Prob\{ X < b_1, X < a_2 \}
+		\]
+		Данная вероятность полуобласти вычисляется как
+		\[
+			\Prob\{ X < b_1, a_2 \leq X < b_2 \} = F(b_1, b_2) - F(b_1, a_2)
+		\]
+		Таким образом на основании всех рассуждений приходим к заключению
+		\begin{multline*}
+			\Prob\{ a_1 \leq X < b_1, a_2 \leq X < b_2 \} = \\
+			= F(b_1, b_2) - F(b_1, a_2) - \bigl(F(a_1, b_2) - F(a_1, a_2)\bigr) = \\
+			= F(b_1, b_2) - F(b_1, a_2) - F(a_1, b_2) + F(a_1, a_2)
+		\end{multline*}
+	\end{Proof}
+	
+	\item при фиксированном $x_1 \;\Rightarrow\; F(x_1, x_2)$ непрерывна слева от $x_2$\\
+	при фиксированном $x_2 \;\Rightarrow\; F(x_1, x_2)$ непрерывна слева от $x_1$
+	\begin{Proof}\\
+		Аналогично одномерному, только в данном случае фиксируем одну из переменных и делаем аналогичное заключения используя \textit{аксиому непрерывности}\\
+	\end{Proof}
+	
+	\item $\lim\limits_{x_2 \to +\infty} F_{X_1, X_2}(x_1, x_2) = F_{X_1}(x_1);\; \lim\limits_{x_1 \to \infty} F_{X_1, X_2}(x_1, x_2) = F_{X_2}(x_2)$
+	\begin{Proof}\\
+		Рассмотрим случай, когда $x_2 \to \infty$. Известно, что
+		\[
+			F_{X_1, X_2}(x_1, x_2) = \Prob\bigl\{ \{ X_1 < x_1 \}, \{ X_2 < x_2 \} \bigr\}
+		\]
+		Так как $x_2 \to \infty$, то пересечение событий $\{ X_1 < x_1 \} \cap \{ X_2 < x_2 \} = \{ X_1 < x_1 \}$. Таким образом, делаем окончательное заключение, что
+		\[
+			\lim\limits_{x_2 \to +\infty} F_{X_1, X_2}(x_1, x_2) = \Prob\{ X_1 < x_1 \} = F_{X_1}(x_1)
+		\]
+		Аналогично и для случая $x_1 \to \infty$\\
+	\end{Proof}
+\end{enumerate}
+
+
+
+
+\subsubsection{Непрерывные случайные векторы}
+
+\begin{definition}
+	Случайный вектор $(X_1, \dots, X_n)$ называют \bi{непрерывным} если существует функция $F(x_1, \dots, x_n)$ такая, что
+	\[
+		F(x_1, \dots, x_n) = \int_{-\infty}^{x_1} dt_1 \int_{-\infty}^{x_2} dt_2 \cdot \ldots \cdot \int_{-\infty}^{x_n} f(t_1, \dots, t_n)\,dt_n, \quad \text{где} 
+	\]
+	\begin{itemize}
+		\item $f(t_1, \dots, t_n)$ --- \bi{функция плотности распределения} случайного вектора $(X_1, \dots, X_n)$.
+	\end{itemize}
+\end{definition}
+\begin{rem}
+	Соответственно для двумерного случайного вектора $(X_1, X_2)$
+	\[
+		F(x_1, x_2) = \int_{-\infty}^{x_1}dt_1\int_{-\infty}^{x_2}f(x_1, x_2)\,dt_2
+	\]
+\end{rem}
+
+\paragraph{Свойства плотности распределения двумерного случайного вектора}
+
+\begin{enumerate}
+	\item $f(x_1, x_2) \geq 0$;
+	\item $\Prob\{a_1 \leq X_1 < b_1, a_2 \leq X_2 < b_2\} = \int_{a_1}^{b_1}dx_1\int_{a_2}^{b_2} f(x_1, x_2)\,dx_2$;
+	\item $\iint_{\Re^2} f(x_1, x_2)\,dx_1\,dx_2 = 1$;
+	\item $\Prob\{a_1 \leq X_1 < b_1 + \Delta x_1, a_2 \leq X_2 < b_2 + \Delta x_2\} \approx f(x_1, x_2)\,\Delta x_1\,\Delta x_2$;
+	\item $\Prob\{ X_1 = x_1^o, X_2 = x_2^o, \} = 0$ для любого наперёд заданного значения $(x_1^o, x_2^o)$;
+	\begin{Proof}
+		Свойства 1 --- 5 доказываются аналогично одномерному случаю.
+	\end{Proof}
+	\item $\Prob\bigl\{ (X_1, X_2) \in D \bigr\} = \iint_D f(x_1, x_2)\,dx_1\,dx_2$
+	\begin{Proof}
+		Является обобщением свойства 2 на случай произвольной области.
+	\end{Proof}
+	\item $\int_{-\infty}^{+\infty} f(x_1, x_2)\,dx_2 = f_{X_1}(x_1) \quad \int_{-\infty}^{+\infty} f(x_1, x_2)\,dx_1 = f_{X_2}(x_2)$
+	\begin{Proof}\\
+		Из свойств двумерной функции распределения
+		\[
+			F_{X_1}(x_1) = \lim\limits_{x_2 \to +\infty} F(x_1, x_2);
+		\]
+		Из определения непрерывного случайного вектора
+		\[
+			\lim\limits_{x_2 \to +\infty} F(x_1, x_2) = \int_{-\infty}^{x_1} dt_1 \int_{-\infty}^{+\infty} f(t_1, t_2)\,dt_2
+		\]
+		Зная, что $f(x) = F'(X)$, дифференцируя интеграл по переменному верхнему пределу получаем
+		\[
+			f_{X_1}(x_1) = \int_{-\infty}^{+\infty} f(x_1, x_2)\,dx_2
+		\]
+		Аналогично и для второго случая.
+	\end{Proof}
+\end{enumerate}
+
+
+\subsubsection{Независимые случайные величины}
+
+\begin{definition}
+	Случайные величины $X$ и $Y$ называют \bi{независимыми} если
+	\[
+		F_{X, Y}(x, y) = F_{X}(x) F_{Y}(y), \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $F_{X, Y}(x, y)$ --- совместная функция распределения
+		\item $F_{X}(x), F_{Y}(y)$ --- маргинальные функции распределения
+	\end{itemize}
+\end{definition}
+
+\paragraph{Свойства}
+	\begin{enumerate}
+		\item Случайные величины $X$ и $Y$ \bi{независимы} тогда и только тогда,\\ когда $\forall x, y \in \Re;\; \{ X < x \}, \{Y < y\}$ --- независимы.
+		\begin{Proof}
+			Есть ни что иное как следствие из определения 2.9.
+		\end{Proof}
+		
+		\item Случайные величины $X$ и $Y$ \bi{независимы} тогда и только тогда,\\ когда $\forall x_1, x_2, y_1, y_2 \in \Re;\; \{ x_1 \leq X < x_2 \}, \{ y_1 \leq Y < y_2\}$ --- независимы.
+		\begin{Proof}\\
+			$\Rightarrow\;$ Пусть случайные величины $X$ и $Y$ \textit{независимы}, тогда
+			\begin{multline*}
+				\Prob\{x_1 \leq X < x_2, y_1 \leq Y < y_2\} = \\ 
+				= F(x_1, y_1) + F(x_2, y_2) - F(x_1, y_2) - F(x_2, y_1) = \\
+				= F_{X}(x_1)F_Y(y_1) + F_{X}(x_2)F_Y(y_2) - F_{X}(x_1)F_Y(y_2) - F_{X}(x_2)F_Y(y_1) = \\
+				= \bigl(F_{X}(x_2) - F_{X}(x_1)\bigr)\,\bigl(F_{Y}(y_2) - F_{Y}(y_1)\bigr) = \\
+				= \Prob\{ x_1 \leq X < x_2 \} \Prob\{ y_1 \leq Y < y_2 \} 
+			\end{multline*}
+			$\Leftarrow\;$ Пусть $\forall x_1, x_2, y_1, y_2 \in \Re;\; \{ x_1 \leq X < x_2 \}, \{ y_1 \leq Y < y_2\}$ --- независимы, тогда
+			\begin{multline*}
+				F(x, y) = \Prob\{ X < x, Y < y \} = \Prob\{ -\infty < X < x, -\infty < Y < y \} = \\
+				= \Prob\{-\infty < X < x\} \Prob\{ -\infty < Y < y \} = \\
+				= F_X(x)\,F_Y(y)
+			\end{multline*}
+			Таким образом $X$, $Y$ --- независимы\\
+		\end{Proof}
+		
+		\item Случайные величины $X$ и $Y$ \bi{независимы} тогда и только тогда,\\ когда $\forall M_1, M_2;\; \{ X \in M_1 \}, \{ Y \in M_2 \}$ --- независимы. \\ $M_1, M_2$ --- промежутки или объединения промежутков.
+		\begin{Proof}
+			Является обобщением 1 и 2.
+		\end{Proof}
+		
+		\item Дискретные случайные величины $X$ и $Y$ \bi{независимы} тогда и только тогда,\\ когда $\forall x_i, y_j$
+		\[
+			p_{i, j} = \Prob\{ X = x_i, Y = y_j \} = \Prob\{X = x_i\} \Prob\{Y = y_i\} = p_{X_i} p_{Y_j}
+		\]
+		\begin{Proof}\\
+			$\Rightarrow\;$
+			\begin{multline*}
+				F_X(x) F_Y(y) = \Prob\{ X < x \} \Prob\{ Y < y \} = \\
+				= \Prob\{ X \in (x_1, \dots, x_k) \}\Prob\{ Y \in (y_1, \dots, y_l) \} = \\
+				= \sum_{i = 1}^{k} \sum_{j = 1}^{l} \Prob\{ X = x_i \} \Prob\{Y = y_j\} = \sum_{i = 1}^{k} \sum_{j = 1}^{l} \Prob\{ X = x_i, Y = y_j \}
+			\end{multline*}
+			$\Leftarrow\;$
+			\begin{multline*}
+				F(x, y) = \Prob\bigl\{X \in (x_1, \dots, x_k), Y \in (y_1, \dots, x_l) \bigr\} = \\
+				= \sum_{i = 1}^{k} \sum_{j = 1}^{l} \Prob\{X = x_i, Y = y_j\} = \sum_{i = 1}^{k} \sum_{j = 1}^{l} \Prob\{ X = x_i \} \Prob\{Y = y_j\} = \\
+				= F_X(x) F_Y(y) 
+			\end{multline*}
+		\end{Proof}
+		
+		\item Непрерывные случайные величины $X$ и $Y$ \bi{независимы} тогда и только тогда, когда $f(x, y) = f_{X}(x)f_{Y}(y)$
+		\begin{Proof}\\
+			$\Rightarrow\;$ Пусть $X, Y$ независимы, тогда $F(x, y) = F_X(x)F_Y(y)$
+			\[
+				f(x, y) = \frac{\delta^2\,F(x, y)}{\delta x\, \delta y} = \frac{\delta^2}{\delta x\, \delta y} \biggl(F_X(x)F_Y(y) \biggr) = \frac{\delta\,F_X(x)}{\delta x}\cdot\frac{\delta\,F_Y(x)}{\delta y} = f_X(x)f_Y(y) 
+			\]
+			$\Leftarrow\;$ Пусть $f(x, y) = f_X(x)f_Y(y)$, тогда
+			\begin{multline*}
+				F(x, y) = \int_{-\infty}^{x}dt_1 \int_{-\infty}^{y} f(t_1, t_2)\,dt_2  = \int_{-\infty}^{x} f_X(t_1)\,dt_1 \int_{-\infty}^{y} f_Y(t_2)\,dt_2 = F_X(x)F_Y(y)\\
+			\end{multline*}
+		\end{Proof}
+	\end{enumerate}
+
+\begin{definition}
+	Случайные величины $X_1, \dots, X_n$, заданные на одном вероятностном пространстве, \bi{попарно независимы} если $\forall i \neq j;\, X_i$ и $X_j$ независимы.
+\end{definition}
+
+\begin{definition}
+	Случайные величины $X_1, \dots, X_n$, заданные на одном вероятностном пространстве, \bi{независимы в совокупности} если
+	\[
+		F(x_1, \dots, x_n) = F_{X_1}(x_1) \cdot \ldots \cdot F_{X_n}(x_n), \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $F(x_1, \dots, x_n)$ --- совместная функция распределения;
+		\item $F_{X_1}(x_1), \ldots, F_{X_n}(x_n)$ --- маргинальные функции распределения.
+	\end{itemize}
+\end{definition}
+
+
+
+\subsection{Условные характеристики случайных величин}
+
+\begin{definition}
+	Для \textit{дискретного случайного вектора} $(X, Y)$ \bi{условная вероятность} есть
+	\[
+		\pi_{i j} = \Prob\{ X = x_i \mid Y = y_j \} = \frac{\Prob\{ X = x_i , Y = y_j \}}{\Prob\{ Y = y_j \}} = \frac{p_{i j}}{p_{Y_j}}, \quad i = \overline{1, n};\; j = \overline{1, m}
+	\]
+\end{definition}
+\begin{rem}
+	$\pi_{i j},\; i = \overline{1, n}$ при условии $Y = y_j$ характеризует \bi{условное распределение дискретной случайной виличины} $X$.
+\end{rem}
+
+... Друг, надеюсь тебе вопросы из этой серии непапались!
+
+
+
+\subsection{Функции случайных величин}

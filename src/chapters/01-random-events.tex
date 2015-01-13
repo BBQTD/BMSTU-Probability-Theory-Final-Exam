@@ -1,0 +1,711 @@
+% !TEX root = ../main.tex
+
+\section{Случайные события}
+
+\subsection{Случайный эксперимент}
+
+\begin{definition}
+	\bi{Элементарный исход (элементарное событие) случайного эксперимента} --- это такой исход, который в рамках конкретного эксперимента:
+	\begin{itemize}
+		\item мыслится неделимым;
+		\item в результате эксперимента обязательно произойдёт один из элементарных исходов;
+		\item никаких два и более элементарных исходов не могут произойти одновременно;
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	\bi{Пространство элементарных исходов} --- это множество всех элементарных исходов конкретного случайного эксперимента.
+\end{definition}
+
+\begin{rem} \hfill
+	\begin{itemize}
+		\item $\outcome$ --- элементарный исход;
+		\item $\spaceoutcomes$ --- пространство элементарных исходов.
+	\end{itemize}
+\end{rem}
+
+\begin{example}
+	Подбрасываем монету один раз. Возможно 2 элементарных исходов:
+	\[
+		\outcome_1 \text{ --- выпал герб,} \quad	\outcome_1 \text{ --- выпала решка}
+	\]
+	Тогда пространство элементарных исходов данного эксперимента выглядит следующим образом:
+	\[
+		\spaceoutcomes = \{ \outcome_1, \outcome_2 \}
+	\]
+\end{example}
+
+\begin{example}
+	Если монету подбрасывают дважды, то возможны следующие элементарные исходы:
+	\[
+		\begin{aligned}
+			&\outcome_1 \text{ --- при первом и втором подбрасывании выпал герб;} \\
+			&\outcome_2 \text{ --- при первом и втором подбрасывании выпала решка;} \\
+			&\outcome_3 \text{ --- при первом подбрасывании выпал герб, а при втором решка;} \\
+			&\outcome_4 \text{ --- при первом подбрасывании выпаа решка, а при втором герб,} \\
+		\end{aligned}
+	\]
+	Тогда пространство элементарных исходов данного эксперимента выглядит следующим образом:
+	\[
+		\spaceoutcomes = \{ \outcome_1, \outcome_2, \outcome_3, \outcome_4 \}
+	\]
+\end{example}
+
+\noindent Так же можно рассмотреть такие популярные примеры как подбрасывание игральной кости, выстрел по мишени и~т.\,д.
+
+
+
+\subsection{Случайное событие}
+
+\begin{definition}[нестрогое]
+	\bi{Случайное событие} --- это произвольное подмножество \textit{пространства элементарных исходов} $\spaceoutcomes$ случайного эксперимента.
+\end{definition}
+
+\noindent
+Говорят, что \bi{событие $A$ произошло} если в результате конкретного случайного эксперимента произошёл \textit{элементарный исход} $\outcome \in A$. Также говорят, что элементы множества $A$ \bi{благоприятствуют} событию $A$.
+
+\begin{definition}
+	\bi{Достоверное событие} --- это такое событие, которое \textbf{обязательно произойдёт} в конкретном случайном эксперименте. Это есть не что иное как событие, которое включает в себя все возможные \textit{элементарные исходы}, конкретного случайного эксперимента и обозначается как $\spaceoutcomes$.
+\end{definition}
+
+\begin{definition}
+	\bi{Невозможное событие} --- это событие, которое в конкретном случайном эксперименте \textbf{никогда не произойдёт}. Обозначается как $\emptyset$.
+\end{definition}
+
+\begin{definition}[следствие события]
+	\textit{Событие} $A$ включено в \textit{событие} $B$ есть $A \subset B$ и означает, что появление \textit{события} $A$ влечёт за собой появление \textit{события} $B$
+\end{definition}
+
+\begin{example}
+	В урне 3 белых и 2 чёрных шара. Из урны извлекают 1 шар. Невозможным событием для данного эксперимента может быть таким
+	\[
+		A = \{ \text{из урны извлечёи синий шар} \}
+	\]
+	А достоверным событием
+	\[
+		B = \{ \text{из урны извлечён белый или чёрный шар} \}
+	\]
+	
+\end{example}
+
+%\begin{example}
+%	ТУ двух видов: последовательного и параллельного соединения. Введём события
+%	\[
+%		\begin{aligned}
+%			A &= \{ \text{схема отказала} \} \\
+%			A_i &= \{ \text{отказал } i\text{--ый элемент схемы} \},\quad i = \overline{1, n} 
+%		\end{aligned}
+%	\]
+%	Для последовательного соединения:
+%	\[
+%		A = A_1 \cup A_2 \cup \dots \cup A_n
+%	\] 
+%	Для параллельного соединения:
+%	\[
+%	A = A_1 \cap A_2 \cap \dots \cap A_n
+%	\] 
+%\end{example}
+
+
+
+\paragraph{Операции над событиями}
+
+\begin{itemize}
+	\item сложение событий: $A \cup B$;
+	\item умножение событий: $A \cap B$;
+	\item разность событий: $A \setminus B$
+	\item противоположное событие: $\overline{A} = \spaceoutcomes \setminus A$	
+\end{itemize}
+
+
+
+\paragraph{Свойства операций над событиями}
+
+\begin{enumerate}
+	\item коммутативность: $A \cup B = B \cup A,\; A \cap B = B \cap A$;
+	\item ассоциативность: $(A \cup B) \cup C = A \cup (B \cup C),\; (A \cap B) \cap C = A \cap (B \cap C)$;
+	\item дистрибутивность относительно сложения: $(A \cup B) \cap C = A \cap C \cup B \cap C$;
+	\item дистрибутивность относительно умножения: $A \cap B \cup C = (A \cup C) \cap (B \cup C)$;
+	\item $A \cup \emptyset = A$;
+	\item $A \cap \spaceoutcomes = A$;
+	\item идемпотентность: $A \cup A = A,\; A \cap A = A$;
+	\item законы де Моргана: $\overline{A \cup B} = \overline{A} \cap \overline{B},\; \overline{A \cap B} = \overline{A} \cup \overline{B}$;
+	\item $A \subseteq B \Leftrightarrow A \cup B = B,\; A \cap B = A,\; \overline{A} \supseteq \overline{B}$
+\end{enumerate}
+	
+	
+	
+\subsection{Классическое определение вероятности}
+
+Пусть в рамках конкретного случайного эксперимента выполняются следующие условия:
+\begin{itemize}
+	\item пространство элементарных исходов конечно т.\,е. $|\spaceoutcomes| = N < \infty$;
+	\item все элементарные исходы равновозможны.
+\end{itemize}
+
+\begin{definition}
+	\bi{Вероятность осушествления события} $A$ есть число
+	\[
+		\Prob(A) = \frac{N_A}{N}, \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $N$ --- число элементарных исходов, благоприятствующих событию $A$
+	\end{itemize}
+\end{definition}
+
+
+\paragraph{Основные свойства}
+
+\begin{enumerate}
+	\item $\Prob(A) \geq 0$
+	\begin{Proof}
+		\[
+			\Prob(A) = \frac{N_A}{N}; \text{ т.\,к. } N_A \geq 0,\; N > 0 \Rightarrow \Prob(A) \geq 0
+		\]
+	\end{Proof}
+	
+	\item $\Prob(\spaceoutcomes) = 1$
+	\begin{Proof}
+		\[
+			\Prob(\spaceoutcomes) = \frac{N_\spaceoutcomes}{N} = \frac{N}{N} = 1
+		\]
+	\end{Proof}
+	
+	\item $\Prob(A \cup B) = \Prob(A) + \Prob(B)$ при $A \cap B = \emptyset$
+	\begin{Proof}
+		т.\,к. по условию $A \cap B = \emptyset$, то $|A \cup B| = |A| + |B| - \cancelto{0}{|A \cap B|}$, тогда
+		\[
+			\Prob(A \cup B) = \frac{N_{A \cup B}}{N} = \frac{N_A + N_B}{N} = \frac{N_A}{N} + \frac{N_B}{N} = \Prob(A) + \Prob(B)
+		\]
+		\\\hfill
+	\end{Proof}
+\end{enumerate}
+
+
+\paragraph{Недостатки классического определения}
+
+\begin{enumerate}
+	\item пространство элементарных исходов конечно;
+	\item поскольку все элементарные исходы равновозможны, то нельзя отдавать предпочтения некоторым элементарным исходам.
+\end{enumerate}
+
+
+
+\subsection{Геометрическое определение вероятности}
+
+Пусть в рамках конкретного случайного эксперимента выполняются следующие условия
+\begin{itemize}
+	\item $\spaceoutcomes \subseteq \Re^n$
+	\item мера множества $\mu(\spaceoutcomes) < \infty$ при \\ $n = 1 \Rightarrow \mu$ --- длина, \\ $n = 2 \Rightarrow \mu$ --- площадь, \\ $n = 3 \Rightarrow \mu$ --- объём и т.\,д.  
+	\item возможность принадлежности исхода множеству $A \subseteq \spaceoutcomes$ пропорциональна $\mu(A)$ и не зависит от расположения $A$ внутри $\spaceoutcomes$, а так же и от формы $A$.
+\end{itemize}
+
+\begin{definition}
+	\bi{Вероятность осуществления события} $A$ есть число
+	\[
+		\Prob(A) = \frac{\mu(A)}{\mu(\spaceoutcomes)}
+	\]
+\end{definition}
+
+
+\paragraph{Преимущества и недостатки геометрического определения}
+
+\begin{itemize*}
+	\item[$+$] из геометрического определения выводятся те же свойства, что и из классического определения;
+	\item[$+$] обобщает классическое определение на случай, когда $\spaceoutcomes$ бесконечное множество в $\Re^n$;
+	\item[$-$] невозможно отдавать предпочтение некоторым областям.
+\end{itemize*}
+
+
+
+\subsection{Статистическое определение вероятности}
+
+Пусть в рамках конкретного случайного эксперимента выполняются следующие условия
+\begin{itemize}
+	\item эксперимент проведён $n$ раз;
+	\item событие $A$ произошло $n_A$ раз.
+\end{itemize}
+
+\begin{definition}
+	\bi{Вероятность осуществления события} $A$ есть число
+	\[
+		\Prob(A) = \lim\limits_{n \to \infty} \frac{n_a}{n} \quad \text{ предел эмперический}
+	\] 
+\end{definition}
+
+
+\paragraph{Преимущества и недостатки статистического определения}
+
+\begin{itemize*}
+	\item[$+$] из статистического определения выводятся те же свойства, что и из классического определения;
+	\item[$-$] эксперимент не может быть повторён бесконечное число раз;
+	\item[$-$] такое определение не даёт дальнейшего развития для математической теории.
+\end{itemize*}
+
+
+
+\subsection{Сигма--алгебра событий}
+
+\begin{definition}
+	\bi{$\sigma$--алгебра событий} $\mathfrak{B}$ --- непустая система подмножеств \textit{пространства элементарных исходов} $\spaceoutcomes$ удовлетворяющая следующим условиям:
+	\begin{itemize}
+		\item $A \in \mathfrak{B} \Rightarrow \overline{A} \in \mathfrak{B}$;
+		\item $A_1, A_2, \dots, A_n, \dots \in \mathfrak{B} \Rightarrow A_1 \cup A_2 \cup \dots \cup A_n \cup \dots \in \mathfrak{B}$.
+	\end{itemize}
+\end{definition}
+
+
+\paragraph{Свойства сигма--алгебры событий}
+
+\begin{enumerate}
+	\item $\spaceoutcomes \in \mathfrak{B}$
+	\begin{Proof}
+		\[
+			A \in \mathfrak{B} \Rightarrow \overline{A} \in \sigmaalgebra \Rightarrow A \cup \overline{A} \in \sigmaalgebra \Rightarrow \spaceoutcomes \in \sigmaalgebra
+		\]
+	\end{Proof}
+	
+	\item $\emptyset \in \sigmaalgebra$
+	\begin{Proof}
+		\[
+			1. \Rightarrow \spaceoutcomes \in \sigmaalgebra \Rightarrow \overline{\spaceoutcomes} \in \sigmaalgebra \Rightarrow \emptyset \in \sigmaalgebra
+		\]
+	\end{Proof}
+	
+	\item $A_1, A_2, \dots, A_n, \dots \in \sigmaalgebra \Rightarrow A_1 \cap A_2 \cap \dots \cap A_n \cap \dots \in \sigmaalgebra$
+	\begin{Proof}
+		\begin{multline*}
+			A_1 \cup A_2 \cup \dots \cup A_n \cup \dots \in \sigmaalgebra \Rightarrow \overline{A_1} \cup \overline{A_2} \cup \dots \cup \overline{A_n} \cup \dots \in \sigmaalgebra \Rightarrow \\
+			\Rightarrow \overline{\overline{A_1} \cup \overline{A_2} \cup \dots \cup \overline{A_n} \cup \dots} \in \sigmaalgebra \Rightarrow A_1 \cap A_2 \cap \dots \cap A_n \cap \dots \in \sigmaalgebra
+		\end{multline*}
+	\end{Proof}
+	
+	\item $A, B \in \sigmaalgebra \Rightarrow A \setminus B \in \sigmaalgebra$
+	\begin{Proof}
+		\[
+			A \setminus B = A \cap \overline{B} \Rightarrow A \in \sigmaalgebra, \overline{B} \in \sigmaalgebra, A \cap \overline{B} \in \sigmaalgebra \Rightarrow A \setminus B \in \sigmaalgebra
+		\]
+	\end{Proof}
+\end{enumerate}
+
+
+
+\subsection{Аксиоматическое определение вероятности}
+
+\begin{definition}
+	Пусть задано $\spaceoutcomes$ и $\sigmaalgebra$. Тогда \bi{вероятность} есть отображение
+	\[
+		\Prob\colon \sigmaalgebra \longrightarrow \Re
+	\]
+	обладающее следующими аксиомами:
+	
+	\begin{enumerate*}
+		\item \bi{аксиома неотрицательности:} $\Prob(A) \geq 0, A \in \sigmaalgebra$
+		\item \bi{аксиома нормированности:} $\Prob(\spaceoutcomes) = 1$
+		\item \bi{расширенная аксиома сложения:} $A_1, A_2, \dots, A_n, \dots \in \sigmaalgebra$ --- попарно несовместные события $\Rightarrow \Prob(A_1 \cup A_2 \cup \dots \cup A_n \cup \dots) = \Prob(A_1) + \Prob(A_2) + \dots + \Prob(A_n) + \dots$
+	\end{enumerate*}
+\end{definition}
+
+
+\paragraph{Свойства вероятности из аксиоматического определения}
+
+\begin{enumerate}
+	\item \bi{вероятность противоположного события:} $\Prob(\overline{A}) = 1 - \Prob(A)$
+	\begin{Proof}
+		\[
+			\Prob(\spaceoutcomes) = \Prob(\underbrace{A \cup \overline{A}}_{A \cap \overline{A} = \emptyset}) = \Prob(A) + \Prob(\overline{A}) = 1	\Rightarrow \Prob(\overline{A}) = 1 - \Prob(A)
+		\]
+	\end{Proof}
+	
+	\item \bi{вероятность невозможного события:} $\Prob(\emptyset) = 0$
+	\begin{Proof}
+		\[
+			\emptyset = \overline{\spaceoutcomes} \Rightarrow \Prob(\emptyset) = \Prob(\overline{\spaceoutcomes}) = 1 - \Prob(\spaceoutcomes) = 1 - 1 = 0
+		\]
+	\end{Proof} 
+	
+	\item \bi{большему событию соответствует большая вероятность:}\\ $A \subseteq B \Rightarrow \Prob(A) \leq \Prob(B)$
+	\begin{Proof}
+		\[
+			\Prob(B) = \Prob(\underbrace{A \cup B \setminus A}_{A \cap (B \setminus A) = \emptyset}) = \Prob(A) + \Prob(B \setminus A) \geq \Prob(A)
+		\]
+	\end{Proof}
+	
+	\item \bi{вероятность заключена между $0$ и $1$:} $0 \leq \Prob(A) \leq 1$
+	\begin{Proof}
+		\begin{itemize}
+			\item $0 \leq \Prob(A)$ --- по аксиоме неотрицательности;
+			\item $\Prob(A) \leq 1$ --- по свойству $3.$ $A \subseteq \spaceoutcomes \Rightarrow \Prob(A) \leq \Prob(\spaceoutcomes) = 1$
+		\end{itemize}
+	\end{Proof}
+	
+	\item \bi{вероятность объединения двух событий:} \\ $\Prob(A \cup B) = \Prob(A) + \Prob(B) - \Prob(AB)$
+	\begin{Proof}
+		\begin{align*}
+			\Prob(A \cup B) &= \Prob(\underbrace{A \cup B \setminus A}_{A \cap (B \setminus A) = \emptyset}) = \Prob(A) + \Prob(B \setminus A) \\
+			\Prob(B) &= \Prob(\underbrace{B \setminus A \cup AB}_{(B \setminus A)(AB) = \emptyset}) = \Prob(B \setminus A) + \Prob(AB) \Rightarrow \Prob(B \setminus A) = \Prob(B) - \Prob(AB) \\
+			\Prob(A \cup B) &= \Prob(A) + \Prob(B) - \Prob(AB)
+		\end{align*}
+	\end{Proof}
+	
+	\item \bi{вероятность объединения любого конечного набора событий:} \\
+	\[
+		\Prob(A_1 \cup A_2 \cup \dots \cup A_n) = \sum_{i = 1}^{n} \Prob(A_i) - \!\!\!\! \sum_{1 \leq i < j \leq n} \!\!\!\! \Prob(A_i \cap A_j) - \dots + (- 1)^{n + 1} \Prob(A_1 \cap A_2 \cap \dots \cap A_n)
+	\]
+	\begin{Proof}\hfill\\
+		для трех событий:
+		\begin{multline*}
+			\Prob(A_1 \cup A_2 \cup A_3) = \Prob(A_1) + \Prob(A_2 \cup A_3) - \Prob\bigl(A_1(A_2 \cup A_3)\bigr) = \\ 
+			= \Prob(A_1) + \Prob(A_2) + \Prob(A_3) - \Prob(A_2 A_3) - \Prob(A_1 A_2 \cup A_1 A_3) = \\
+			= \Prob(A_1) + \Prob(A_2) + \Prob(A_3) - \Prob(A_2 A_3) - \bigl(\Prob(A_1 A_2) + \Prob(A_1 A_3) - \Prob(A_1 A_2 A_3) \bigr) = \\
+			= \Prob(A_1) + \Prob(A_2) + \Prob(A_3) - \Prob(A_2 A_3) - \Prob(A_1 A_2) - \Prob(A_1 A_3) + \Prob(A_1 A_2 A_3)
+		\end{multline*}
+		для четырёх:
+		\begin{multline*}
+			\Prob(A_1 \cup A_2 \cup A_3 \cup A_4) = \Prob(A_1) + \Prob(A_2 \cup A_3 \cup A_4) - \Prob\bigl(A_1 (A_2 \cup A_3 \cup A_4)\bigr) = \\
+			= \Prob(A_1) + \Prob(A_2 \cup A_3 \cup A_4) - \Prob\bigl(A_1 A_2 \cup A_1 (A_3 \cup A_4)\bigr) = \\
+			= \Prob(A_1) + \Prob(A_2 \cup A_3 \cup A_4) - \Bigl(\Prob(A_1 A_2) + \Prob\bigl(A_1 (A_3 \cup A_4)\bigr) - \Prob\bigl(A_1 A_2 (A_3 \cup A_4)\bigr)\!\Bigr) = \\
+			= \Prob(A_1) + \Bigl[\Prob(A_2) + \Prob(A_3) + \Prob(A_4) - \Prob(A_2 A_3) - \Prob(A_3 A_4) - \Prob(A_2 A_4) + \Prob(A_2 A_3 A_4)\Bigr] - \\
+			- \Bigl[\Prob(A_1 A_2) + \bigl< \Prob(A_1 A_3) + \Prob(A_1 A_4) - \Prob(A_1 A_3 A_4) \bigr> - \\
+			- \bigl< \Prob(A_1 A_2 A_3) + \Prob(A_1 A_2 A_4) - \Prob(A_1 A_2 A_3 A_4) \bigr>  \Bigr] = \\
+			= \Prob(A_1) + \Prob(A_2) + \Prob(A_3) + \Prob(A_4) - \\
+			- \Prob(A_2 A_3) - \Prob(A_3 A_4) - \Prob(A_2 A_4) - \Prob(A_1 A_2) - \Prob(A_1 A_3) - \Prob(A_1 A_4) + \\
+			+ \Prob(A_2 A_3 A_4) + \Prob(A_1 A_3 A_4) + \Prob(A_1 A_2 A_3) + \Prob(A_1 A_2 A_4) - \\
+			- \Prob(A_1 A_2 A_3 A_4)
+		\end{multline*}
+	\end{Proof}
+\end{enumerate}
+
+
+
+\subsection{Условная вероятность}
+
+\begin{definition}
+	\bi{Условная вероятность} осуществления события $A$ при условии, что произошло событие $B$ есть число
+	\[
+		\Prob(A \mid B) = \frac{N_{AB}}{N_B} = \frac{N_{AB}/N}{N_{B}/N} = \frac{\Prob(AB)}{\Prob(B)}, \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $\Prob(B) \neq 0$
+	\end{itemize}
+\end{definition}
+
+\noindent
+Условная вероятность обладает всеми свойствами безусловной вероятности:
+\begin{enumerate}
+	\item $\Prob(A \mid B) \geq 0$
+	\begin{Proof}
+		\[
+			\Prob(A \mid B) = \frac{\Prob(AB)}{\Prob(B)},\; \Prob(AB) \geq 0,\; \Prob(B) > 0\; \Rightarrow\; \Prob(A \mid B) \geq 0
+		\]
+	\end{Proof}
+	
+	\item $\Prob(\spaceoutcomes \mid B) = 1$
+	\begin{Proof}
+		\[
+			\Prob(\spaceoutcomes \mid B) = \frac{\Prob(\spaceoutcomes B)}{\Prob(B)} = \frac{\Prob(B)}{\Prob(B)} = 1
+		\]
+	\end{Proof}
+	
+	\item $\Prob(A_1 \cup A_2 \cup \dots \cup A_n \cup \dots \mid B) = \Prob(A_1 \mid B) + \Prob(A_2 \mid B) + \dots + \Prob(A_n \mid B) + \dots$, где $A_1, A_2, \dots, A_n, \dots$ --- попарно несовместные события
+	\begin{Proof}
+		\begin{multline*}
+			\Prob(A_1 \cup A_2 \cup \dots \cup A_n \cup \dots \mid B) = \frac{\Prob\bigl((A_1 \cup A_2 \cup \dots \cup A_n \cup \dots)  B\bigr)}{\Prob(B)} = \\
+			= \frac{\Prob(A_1 B) + \Prob(A_2 B) + \dots + \Prob(A_n B) + \dots}{\Prob(B)} = \\
+			= \frac{\Prob(A_1 B)}{\Prob(B)} + \frac{\Prob(A_2 B)}{\Prob(B)} + \dots + \frac{\Prob(A_n B)}{\Prob(B)} + \dots = \\
+			= \Prob(A_1 \mid B) + \Prob(A_2 \mid B) + \dots + \Prob(A_n \mid B) + \dots
+		\end{multline*}
+	\end{Proof}
+\end{enumerate}
+
+\noindent
+Смысл условной вероятности заключается в том, что условная вероятность представляет собой безусловную вероятность заданную на новом пространстве элементарных исходов, совпадающим с некоторым событием.
+
+
+
+\paragraph{Формула умножения вероятностей}\hfill\\
+для 2x событий:
+\[
+	\Prob(AB) = \Prob(A)\Prob(B \mid A),\quad \text{где}
+\]
+\begin{itemize}
+	\item $\Prob(A) > 0$
+\end{itemize}
+
+\begin{Proof}
+	\[
+		\Prob(B \mid A) = \frac{\Prob(AB)}{\Prob(A)} \;\Rightarrow\; \Prob(AB) = \Prob(A) \Prob(B \mid A),\; \Prob(A) > 0
+	\]
+\end{Proof}
+
+\hfill\\
+\noindent для $n$ событий
+\[
+	\Prob(A_1 \cap A_2 \cap \dots \cap A_n) = \Prob(A_1) \Prob(A_2 \mid A_1) \Prob(A_3 \mid A_1 A_2) \dots \Prob(A_n \mid A_1 \cap A_2 \cap \dots \cap A_{n - 1}), \quad \text{где}
+\]
+\begin{itemize}
+	\item $\Prob(A_1 \cap A_2 \cap \dots \cap A_{n-1} > 0$
+\end{itemize}
+\begin{Proof}
+	\begin{multline*}
+		\Prob(A_1 \cap A_2 \cap \dots \cap A_{n-1} \cap A_n) = \Prob(A_1 \cap A_2 \cap \dots \cap A_{n-2} \cap A_{n-1}) \Prob(A_n \mid A_1 \cap A_2 \cap \dots \cap A_{n-1}) = \\
+		= \Prob(A_1 \cap A_2 \cap \dots \cap A_{n-3} \cap A_{n-2}) \Prob(A_{n-1} \mid A_1 \cap A_2 \cap \dots \cap A_{n-2}) \Prob(A_n \mid A_1 \cap A_2 \cap \dots \cap A_{n-1}) = \\
+		= \dots = \\
+		= \Prob(A_1) \Prob(A_2 \mid A_1) \Prob(A_3 \mid A_1 A_2) \dots \Prob(A_n \mid A_1 \cap A_2 \cap \dots \cap A_{n - 1})
+	\end{multline*}
+\end{Proof}
+
+\begin{example}
+	В урне 7 карточек из которых можно составить слово ``ШОКОЛАД``. Карточки из урны извлекают последовательно и выкладывают из них слева направо слово ``ШОК``
+	\begin{align*}
+		&A_1 = \{ \text{1 вытащенная карточка --- Ш} \}\\
+		&A_2 = \{ \text{2 вытащенная карточка --- О } \}\\
+		&A_3 = \{ \text{3 вытащенная карточка --- К } \}\\
+	\end{align*}
+	\[
+		\Prob(A_1 A_2 A_3) = \Prob(A_1) \Prob(A_2 \mid A_1) \Prob(A_3 \mid A_1 A_2) = \frac{1}{7} \cdot \frac{2}{6} \cdot \frac{1}{5} = 0,0095
+	\]
+\end{example}
+
+
+
+\subsection{Независимые события}
+
+\begin{definition}
+	События $A$ и $B$ \bi{независимые} если 
+	\[
+		\Prob(A \mid B) = \Prob(A) \quad \text{или} \quad \Prob(B \mid A) = \Prob(B), \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $\Prob(A) > 0$;
+		\item $\Prob(B) > 0$.
+	\end{itemize}
+	иначе события $A, B$ --- \bi{зависимые}.
+\end{definition}
+
+\begin{theorem}[\bi{критерий независимости двух событий}]\hfill\\
+	События $A$ и $B$ \bi{независимые} тогда и только тогда, когда
+	\[
+		\Prob(AB) = \Prob(A) \Prob(B), \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $\Prob(A) > 0$;
+		\item $\Prob(B) > 0$.
+	\end{itemize}
+\end{theorem}
+\begin{Proof}\\\hangindent=1cm
+	$\Rightarrow$ Так как $\Prob(B \mid A) = \Prob(B)$ по определению, тогда из формулы умножения вероятностей
+	\[
+		\Prob(AB) = \Prob(A) \Prob(B \mid A) = \Prob(A) \Prob(B)
+	\]
+	$\Leftarrow\;$ Пусть $\Prob(AB) = \Prob(A) \Prob(B)$, тогда из определения условной вероятности
+	\[
+		\Prob(A \mid B) = \frac{\Prob(AB)}{\Prob(B)} = \frac{\Prob(A) \Prob(B)}{\Prob(B)} = \Prob(A)
+	\]
+	\begin{center} или \end{center}
+	\[
+		\Prob(B \mid A) = \frac{\Prob(AB)}{\Prob(A)} = \frac{\Prob(A) \Prob(B)}{\Prob(A)} = \Prob(B)
+	\]
+\end{Proof}
+
+\begin{definition}
+	События $A_1, A_2, \dots A_n$ \bi{попарно независимы} тогда и только тогда, когда
+	\[
+		\Prob(A_i A_j) = \Prob(A_i) \Prob(A_j), \quad \forall i, j : i \neq j
+	\]
+\end{definition}
+
+\begin{definition}
+	События $A_1, A_2, \dots A_n$ \bi{независимы в совокупности}, когда для любого набора $i_1 < \dots < i_k,\; k = \overline{1, n}$ справедливо
+	\[
+		\Prob(A_{i_1} \cap \dots \cap A_{i_k}) = \Prob(A_{i_1}) \cdot \ldots \cdot \Prob(A_{i_k})
+	\]
+\end{definition}
+
+\begin{rem}[\bi{связь}]\hfill\\
+	\bi{Независимы в совокупности} $\;\Rightarrow\;$ \bi{попарно независимы}. Обратное неверно.
+\end{rem}
+
+\noindent
+Обоснуем данную связь на следующем примере.
+
+\begin{example}
+	Тетраэдр. 4 грани --- $\{1\}, \{2\}, \{3\}, \{1, 2, 3\}$. Введём события
+	\begin{align*}
+		&A_i = \{ \text{на грани --- } i \}, \quad i = \overline{1, 3} \\
+		&A_4 = \{ \text{на грани --- } 1, 2, 3 \}
+	\end{align*}
+	Безусловная вероятность $\Prob(A_i) = \dfrac{2}{4} = 0.5,\; i = \overline{1, 3}$ \\
+	Условная вероятность $\Prob(A_i \mid A_j) = \dfrac{\Prob(A_i A_j)}{\Prob(A_j)} = \dfrac{1/4}{2/4} = 0.5 = \Prob(A_i);\; i \neq j;\; i, j = \overline{1, 3}$
+	т.\,е. события попарно независимы, но
+	\[
+		\Prob(A_1 \mid A_2 A_3) = \dfrac{\Prob(A_1 A_2 A_3)}{\Prob(A_2 A_3)} = \dfrac{1/4}{1/4} = 1 \neq \Prob(A_1)
+	\]
+	$\Rightarrow\;$ зависимы в совокупности
+\end{example}
+
+\begin{rem}[\bi{связь между совместными и зависимыми событиями}]\hfill
+	\begin{itemize*}
+		\item cобытия $A$ и $B$ \bi{несовместные} и $\Prob(A) \neq 0,\; \Prob(B) \neq 0 \;\Rightarrow\;$ \bi{зависимые};
+		\item cобытия $A$ и $B$ \bi{совместные} $\;\Rightarrow\;$ либо \bi{зависимые} либо \bi{независимые};
+		\item cобытия $A$ и $B$ \bi{зависимые} $\;\Rightarrow\;$ либо \bi{совместные} либо \bi{несовместные}.
+	\end{itemize*}
+\end{rem}
+
+
+
+\subsection{Полная группа событий}
+
+\begin{definition}
+	\bi{События} $H_1, \dots, H_n \subseteq \spaceoutcomes$ образуют \bi{полную группу событий} если:
+	\begin{itemize}
+		\item $H_i \cap H_j = \emptyset;\; i, j = \overline{1, n};\; i \neq j$ т.е. \bi{попарно несовместные события};
+		\item $\bigcup_{i = 1}^{n} H_i = \spaceoutcomes$.
+	\end{itemize}
+	При этом \bi{события} $H_1, \dots, H_n$ называют \bi{гипотезами}.
+\end{definition}
+
+
+\paragraph{Формула полной вероятности}
+
+\begin{theorem}
+	\[
+		\Prob(A) = \Prob(H_1) \cdot \Prob(A \mid H_1) + \dots + \Prob(H_n) \cdot \Prob(A \mid H_n), \quad \text{где}
+	\]
+	\begin{itemize}
+		\item $H_1, \dots, H_n$ --- полная группа событий;
+		\item $\Prob(H_i) > 0,\; i = \overline{1, n}$;
+	\end{itemize}
+\end{theorem}
+
+\begin{Proof}\\\hangindent=1cm
+	Рассмотрим событие $A$. Так как по условию $H_1, \dots, H_n$ --- \textit{полная группа событий}
+	\[
+		A = A \cap \spaceoutcomes = A \cap (H_1 \cup \dots \cup H_n) = AH_1 \cup \dots \cup AH_n
+	\]
+	Поскольку $AH_1 \cup \dots \cup AH_n$ \textit{попарно несовместные события}, то $\Prob(A)$ примет следующий вид
+	\[
+		\Prob(A) = \Prob(AH_1) + \ldots + \Prob(AH_n)
+	\]
+	Так как по условию $\Prob(H_i) > 0,\; i = \overline{1, n}$, воспользуемся \textit{формулой умножения вероятностей} для $\Prob(AH_i)$, и тогда формула примет окончательный вид
+	\[
+		\Prob(A) = \Prob(H_1) \Prob(A \mid H_1) + \ldots + \Prob(H_n) \Prob(A \mid H_n) 
+	\]
+\end{Proof}
+
+
+\paragraph{Формула Байеса}
+
+\begin{theorem}
+	\[
+		\Prob(H_i \mid A) = \frac{\Prob(H_i)\Prob(A \mid H_i)}{\Prob(H_1)\Prob(A \mid H_1) + \ldots + \Prob(H_n)\Prob(A \mid H_n)}, \quad \text{где}
+	\]
+	\begin{itemize*}
+		\item $\Prob(A) > 0$
+		\item $H_1, \dots, H_n$ --- полная группа событий;
+		\item $\Prob(H_j) > 0,\; j = \overline{1, n}$
+	\end{itemize*}
+\end{theorem}
+
+\begin{Proof}\\\hangindent=1cm
+	Из определения \textit{условной вероятности} известно
+	\[
+		\Prob(H_i \mid A) = \frac{\Prob(H_i A)}{\Prob(A)}
+	\] 
+	В числители можно воспользоваться \textit{формулой умножения вероятностей}, так как по условию $\Prob(H_i) > 0$, а в знаменателе --- \textit{формулой полной вероятности}, так как по условию $H_1, \dots, H_n$ --- полная группа событий и вероятности всех \textit{гипотез} определены $\Prob(H_j) > 0,\; j = \overline{1, n}$. В таком случае, формула примет окончательный вид
+	\[
+		\Prob(H_i \mid A) = \frac{\Prob(H_i)\Prob(A \mid H_i)}{\Prob(H_1)\Prob(A \mid H_1) + \ldots + \Prob(H_n)\Prob(A \mid H_n)}
+	\]
+\end{Proof}
+
+\begin{rem}
+	\bi{Вероятности} $\Prob(H_1), \dots \Prob(H_n)$ называют \bi{априорными}, т.\,е. вероятностями полученными \bi{до опыта}.
+\end{rem}
+
+\begin{rem}
+	\bi{Условные вероятности} $\Prob(H_1 \mid A), \dots, \Prob(H_n \mid A)$ называют \bi{апостериорными}, т.\,е. вероятностями полученными \bi{после опыта}.
+\end{rem}
+
+
+
+\subsection{Схема Бернулли}
+
+\begin{definition}
+	\bi{Схемой испытаний Бернулли} называют последовательность испытаний где:
+	\begin{itemize}
+		\item в каждом эксперименте только \bi{два исхода}: \textit{успех} (событие $A$) или \textit{неудача} (событие $\overline{A}$);
+		\item все \bi{испытания не зависимы}, т.\,е. на результат некоторого $k$--го испытания \textit{не влияют предыдущие результаты};
+		\item \bi{вероятность успеха} во всех испытаниях \bi{постоянна} и обозначают \\ $\Prob(A) = p$ при этом неудача $\Prob(\overline{A}) = 1 - \Prob(A) = 1 - p = q$
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}[\bi{$k$ успехов в серии из $n$ испытаний}]
+	\[
+		P_n(k) = C_n^k\,p^k q^{n-k}, \quad k \in \overline{0, n}
+	\]
+\end{theorem}
+
+\begin{Proof}\\\hangindent=1cm
+	Рассмотрим некоторую последовательность результатов $n$ испытаний в которой произошло ровно $k$ успехов. Введём для этой последовательности событие $A_k$
+	\[
+		A_k = \{ \text{В $n$ испытаниях произошло ровно $k$ успехов} \}, \quad k \in \overline{0, n}
+	\] 
+	Учитывая, что все \textit{испытания независимы} (т.\,е. \textit{независимы в совокупности}), воспользуемся \textit{формулой умножения вероятностей}. В таком случае, для какой либо конкретной последовательности результатов, вероятность примет следующий вид
+	\[
+		\Prob(A_k) = p^k q^{n-k}, \quad k \in \overline{0, n}
+	\]
+	Остаётся учесть всевозможные варианты перестановок элементарного исхода ``\textit{успех}`` без повторений. Формула принимает окончательный вид
+	\[
+	  	P_n(k) = C_n^k\Prob(A_k) = C_n^k\,p^k q^{n-k}, \quad k \in \overline{0, n}
+	\]
+\end{Proof}
+
+\begin{corollary}
+	\bi{Вероятность успеха} в $n$ испытаниях \bi{не менее $k_1$ раз} и \bi{не более $k_2$ раз} есть число
+	\[
+		P_n(k_1 \leq k \leq k_2) = \sum_{k = k_1}^{k_2} C_n^k\,p^k q^{n-k}
+	\]
+\end{corollary}
+\begin{Proof}\\
+	Данная формула уместна, так как события $A_k,\, k = \overline{k_1, k_2}$ \textit{несовместны}, т.\,е. ищут вероятность события $A = A_{k_1} \cup \dots \cup A_{k_2}$.\\
+\end{Proof}
+
+\begin{corollary}
+	\bi{Вероятность хотя бы одного успеха} из $n$ испытаний есть число
+	\[
+		P_n(k \geq 1) = 1 - q^n
+	\]
+\end{corollary}
+\begin{Proof}\\\hangindent=1cm
+	Данный случай есть ни что иное как
+	\[
+		P_n(k \geq 1) = 1 - P_n(0)
+	\]
+	Так как $P_n(0) = C_n^0\,p^0 q^{n - 0} = q^n$, таким образом формула принимает окончательный вид
+	\[
+		P_n(k \geq 1) = 1 - q^n
+	\]
+\end{Proof}
+
+\begin{corollary}[\bi{наивероятнейшее число успехов}]\hfill
+	\begin{itemize}
+		\item $n\,p - q$ --- \bi{целое} $\;\Rightarrow\;$ \bi{наивероятнейшее число успехов} $k = n\,p - q$;
+		\item $n\,p - q$ --- \bi{не целое} $\;\Rightarrow\;$ \bi{два наивероятнейших числа успехов}:
+		\begin{itemize}
+			\item ближайшее целое к $n\,p - q$ \bi{слева};
+			\item ближайшее целое к $n\,p - q$ \bi{справа}.
+		\end{itemize}
+	\end{itemize}
+\end{corollary}
+\begin{Proof}\\
+	Рассмотрим следующее выражение
+	\[
+		\frac{P_n(k+1)}{P_n(k)} = \frac{n-k}{k+1} \cdot \frac{p}{q}
+	\]
+	При возрастании $k$, $P_n(k)$ будет:
+	\begin{itemize}
+		\item \bi{возрастать} если $\dfrac{P_n(k+1)}{P_n(k)} > 1 \;\Rightarrow\; k < n\,p - q$
+		\item \bi{убывать} если $\dfrac{P_n(k+1)}{P_n(k)} < 1 \;\Rightarrow\; k > n\,p - q$
+	\end{itemize} 
+	На основании всего этого получаем данное следствие.\\
+\end{Proof}
